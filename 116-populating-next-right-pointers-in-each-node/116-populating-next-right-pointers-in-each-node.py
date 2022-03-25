@@ -13,14 +13,11 @@ class Solution:
         if not root or not root.left:
             return root
         
-        q = collections.deque([(root.left, root.right)])
+        root.left.next = root.right
+        if root.next:
+            root.right.next = root.next.left
+            
+        self.connect(root.left)
+        self.connect(root.right)
         
-        while q:
-            l, r = q.popleft()
-            l.next = r
-            if l.left:
-                q.append((l.left, l.right))
-                q.append((l.right, r.left))
-                q.append((r.left, r.right))
-                
         return root
