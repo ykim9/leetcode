@@ -1,16 +1,6 @@
 class Solution:
     def firstUniqChar(self, s: str) -> int:
-        unique = [1] * len(s)
-        cnt = {}
-        for i, c in enumerate(s):
-            if c in cnt:
-                unique[i] = 0
-                unique[cnt[c]] = 0
-            else:
-                cnt[c] = i
-                
-        try:
-            return unique.index(1)
-        except:
-            return -1
-        
+        from string import ascii_lowercase
+        letters = ascii_lowercase
+        uniq = [s.index(l) for l in letters if s.count(l) == 1]
+        return min(uniq) if uniq else -1
