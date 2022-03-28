@@ -1,6 +1,6 @@
 class Solution:
     # solution 1
-    def permute1(self, nums: List[int]) -> List[List[int]]:
+    def permute(self, nums: List[int]) -> List[List[int]]:
         result = []
         
         def dfs(track, nums):
@@ -16,7 +16,7 @@ class Solution:
         return result
     
     # solution2
-    def permute(self, nums: List[int]) -> List[List[int]]:
+    def permute2(self, nums: List[int]) -> List[List[int]]:
         result = []
         
         def dfs(start, end):
