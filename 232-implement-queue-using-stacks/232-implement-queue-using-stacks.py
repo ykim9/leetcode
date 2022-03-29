@@ -9,25 +9,21 @@ class MyQueue:
     
     # 출력용 stack에 옮겨서 첫번째로 입력한 값 pop
     def pop(self) -> int:
-        self.in_to_out()
+        self.peek()
         return self._out.pop()
 
+    # 입력용 stack의 값 출력용 stack으로 옮기고 첫번째 원소 return
     def peek(self) -> int:
-        self.in_to_out()
+        # 출력용 stack에 있는 값을 모두 처리한 경우에만 입력용 stack으로 옮기기
+        if not self._out: 
+            while self._in:
+                self._out.append(self._in.pop())
         return self._out[-1]
 
     def empty(self) -> bool:
-        self.in_to_out()
-        return len(self._out) == 0
+        return len(self._out) == 0 and len(self._in) == 0
     
-    # 입력용 stack의 값 출력용 stack으로 옮기기
-    def in_to_out(self):
-        # 출력용 stack에 이전에 넣은 값이 아직 있으면 처리하지 않기
-        if self._out: 
-            return
         
-        while self._in:
-            self._out.append(self._in.pop())
             
 # Your MyQueue object will be instantiated and called as such:
 # obj = MyQueue()
