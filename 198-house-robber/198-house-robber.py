@@ -1,5 +1,11 @@
 class Solution:
-    def rob(self, nums: List[int]) -> int:
+    """
+    f(0) = nums[0]
+    f(1) = max(num[0], num[1])
+    f(k) = max( f(k-2) + nums[k], f(k-1) )
+    """
+    # 방법 1
+    def rob1(self, nums: List[int]) -> int:
         if len(nums) == 1: 
             return nums[0]
         dp = nums[:]
@@ -11,3 +17,10 @@ class Solution:
             dp[i] = max(dp[i - 1], nums[i] + dp[i - 2])
             
         return dp[-1]
+    
+    # 방법2 : 공간 최적화
+    def rob(self, nums: List[int]) -> int:
+        last, now = 0, 0
+        for n in nums:
+            last, now = now, max(now, last + n)
+        return now
