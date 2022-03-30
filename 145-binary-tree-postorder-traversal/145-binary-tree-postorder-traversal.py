@@ -7,7 +7,7 @@
 class Solution:
     # 후위 순회: left -> right -> root 순
     # 방법 1: recursive
-    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def postorderTraversal1(self, root: Optional[TreeNode]) -> List[int]:
         result = []
         def postorder( node):
             if not node:
@@ -18,3 +18,17 @@ class Solution:
         postorder(root)
         return result
     
+    # 방법 2: iterative
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        res, stack = [], [(root, False)]
+        while stack:
+            node, visited = stack.pop()
+            if not node:
+                continue
+            if visited:
+                res.append(node.val)
+            else:
+                stack.append((node, True))
+                stack.append((node.right, False))
+                stack.append((node.left, False))
+        return res
