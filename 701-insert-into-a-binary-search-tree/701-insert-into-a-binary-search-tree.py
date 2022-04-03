@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     # recursive
-    def insertIntoBST1(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+    def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
         if not root:
             return TreeNode(val)
         if root.val > val:
@@ -17,7 +17,7 @@ class Solution:
         return root
     
     #iterative
-    def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+    def insertIntoBST1(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
         newVal = TreeNode(val)
         if not root:
             return newVal
