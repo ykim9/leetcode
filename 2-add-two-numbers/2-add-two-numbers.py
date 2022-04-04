@@ -16,9 +16,9 @@ class Solution:
                 v += l2.val
                 l2 = l2.next
             
-            l.next = ListNode(v%10)
+            carry, val = divmod(v, 10)
+            l.next = ListNode(val)
             l = l.next
-            carry = v // 10
 
         return dummy.next
         
