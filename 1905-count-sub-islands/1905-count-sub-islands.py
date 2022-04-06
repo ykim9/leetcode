@@ -11,6 +11,12 @@ class Solution:
             return isSub
         
         m, n = len(grid1), len(grid1[0])
-        return sum(dfs(x, y) for x in range(m) for y in range(n) if grid1[x][y] and grid2[x][y])
+        ans = 0
+        for x in range(m):
+            for y in range(n):
+                if grid1[x][y] == 1 and grid2[x][y] == 1:
+                    if dfs(x, y):
+                        ans += 1
+        return ans
 
                     
