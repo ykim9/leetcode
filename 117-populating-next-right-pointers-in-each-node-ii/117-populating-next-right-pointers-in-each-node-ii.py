@@ -11,17 +11,15 @@ class Node:
 class Solution:
     def connect(self, root: 'Node') -> 'Node':
         node = root
+        pre = cur = Node(0)
         while node:
-            cur = dummy = Node(0)
             while node:
-                if node.left:
-                    cur.next = node.left
-                    cur = cur.next
-                if node.right:
-                    cur.next = node.right
-                    cur = cur.next
+                cur.next = node.left
+                cur = cur.next or cur
+                cur.next = node.right
+                cur = cur.next or cur
                 node = node.next
-            node = dummy.next
+            node, cur = pre.next, pre
             
         return root
                     
