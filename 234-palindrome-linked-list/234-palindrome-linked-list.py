@@ -17,6 +17,7 @@ class Solution:
             node.next = reverse
             reverse = node
         
+        # if the list has even nodes, move slow to get mid node 
         if fast:
             slow = slow.next
         
