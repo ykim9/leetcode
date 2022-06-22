@@ -1,14 +1,14 @@
 class Solution:
     def longestPalindrome(self, s: str) -> int:
-        cnt = collections.Counter(s)
         ans = 0
-        addMidChar = 0
-        for c in cnt:
-            if cnt[c] % 2 == 0:
-                ans += cnt[c]
-            else:
-                addMidChar = 1
-                if cnt[c] > 2:
-                    ans += cnt[c] - 1
-                    
-        return ans + addMidChar
+        for n in collections.Counter(s).values():
+            ans += (n // 2) * 2
+            if ans % 2 == 0 and n % 2 == 1:
+                ans += 1
+        return ans
+    
+    # count odds
+#     def longestPalindrome2(self, s: str) -> int:
+#         odds = sum([n % 2 == 1 for n in collections.Counter(s).values()])
+#         return len(s) - odds + bool(odds)
+    
