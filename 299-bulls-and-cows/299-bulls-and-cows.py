@@ -6,15 +6,13 @@ class Solution:
         for i, c in enumerate(secret):
             if c == guess[i]:
                 bull += 1
-            
-            s_cnt[c] += 1
-            g_cnt[guess[i]] += 1
+            else:
+                s_cnt[c] += 1
+                g_cnt[guess[i]] += 1
             
         for c in s_cnt:
             if c in g_cnt:
                 cow += min(s_cnt[c], g_cnt[c])
-                
-        cow = cow - bull if cow - bull > 0 else 0
                 
         return f'{bull}A{cow}B'
                 
