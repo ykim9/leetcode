@@ -3,15 +3,9 @@ class Solution:
     def lastStoneWeight(self, stones: List[int]) -> int:
         heap = []
         for s in stones:
-            heapq.heappush(heap, s * -1)
+            heapq.heappush(heap, -s)
         
-        while len(heap) > 1:
-            x = heapq.heappop(heap) * -1
-            y = heapq.heappop(heap) * -1
-            
-            if x < y:
-                heapq.heappush(heap, x-y)
-            elif x > y:
-                heapq.heappush(heap, y-x)
+        while len(heap) > 1 and heap[0] != 0:
+            heapq.heappush(heap, heapq.heappop(heap) - heapq.heappop(heap))
         
-        return heap[-1] * -1 if len(heap) else 0
+        return -heap[-1]
