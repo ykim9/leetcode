@@ -11,13 +11,14 @@ class Solution:
                 return None
             
             target -= node.val
+            path.append(node.val)
             if not node.left and not node.right:
                 if target == 0:
-                    result.append(path+[node.val])
+                    result.append(path[:])
             else:
-                dfs(node.left, path+[node.val], target)
-                dfs(node.right, path+[node.val], target)
-                
+                dfs(node.left, path, target)
+                dfs(node.right, path, target)
+            path.pop()
         result = []
         dfs(root)
         return result
